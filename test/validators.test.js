@@ -120,5 +120,69 @@ describe.only('validators', async function () {
                 expect(err.message).to.be.eq(getErrorText(value));
             }
         });
+
+        it('should throw an error for strings', async function () {
+            const value = chance.string();
+            try {
+                await validators.positiveIntegerValidator('thing', value);
+                throw new Error(`Didn't throw`);
+            } catch (err) {
+                expect(err.message).to.be.eq(getErrorText(value));
+            }
+        });
+    });
+
+    describe('stringValidator', async function () {
+        const getErrorText = (value) => 'thing option must be a string. Received: ' + value;
+    
+        it('should return string', async function () {
+            const value = 'test';
+            const result = await validators.stringValidator('thing', value);
+            expect(result).to.be.eq(value);
+        });
+
+        it('should return lower case', async function () {
+            const value = 'TEST';
+            const result = await validators.stringValidator('thing', value);
+            expect(result).to.be.eq(value.toLowerCase());
+        });
+
+        it('should return trimmed', async function () {
+            const value = '       test          ';
+            const result = await validators.stringValidator('thing', value);
+            expect(result).to.be.eq(value.trim());
+        });
+
+        it('should return null for undefined', async function () {
+            const value = null;
+            const result = await validators.stringValidator('thing', value);
+            expect(result).to.be.null;
+        });
+
+        it('should return null for null', async function () {
+            const value = null;
+            const result = await validators.stringValidator('thing', value);
+            expect(result).to.be.null;
+        });
+
+        it('should throw an error for an integer', async function () {
+            const value = chance.integer();
+            try {
+                await validators.stringValidator('thing', value);
+                throw new Error(`Didn't throw`);
+            } catch (err) {
+                expect(err.message).to.be.eq(getErrorText(value));
+            }
+        });
+
+        it('should throw an error for a boolean', async function () {
+            const value = chance.bool();
+            try {
+                await validators.stringValidator('thing', value);
+                throw new Error(`Didn't throw`);
+            } catch (err) {
+                expect(err.message).to.be.eq(getErrorText(value));
+            }
+        });
     });
 });
