@@ -20,7 +20,7 @@
   "repository": "https://github.com/Dylanlan/pokemon-randomizer-cli",
   "dependencies": {
     "commander": "^2.19.0",
-    "pokemon-randomizer": "^0.1.2"
+    "pokemon-randomizer": "^0.1.3"
   },
   "devDependencies": {
     "chai": "^4.2.0",
