@@ -5,7 +5,7 @@ const expect = require('chai').expect;
 const Chance = require('chance');
 const chance = new Chance();
 
-describe.only('validators', async function () {
+describe('validators', async function () {
     describe('booleanValidator', async function () {
         const getErrorText = (value) => 'thing option must be a boolean. Received: ' + value;
     

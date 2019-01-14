@@ -3,7 +3,7 @@
 const expect = require('chai').expect;
 const allOptions = require('../lib/options').ALL_OPTIONS;
 
-describe.only('options', async function () {
+describe('options', async function () {
     describe('ALL_OPTIONS', async function () {
         it('should include expected long names', async function () {
             const longNames = ['number', 'evolved', 'type', 'unique', 'file', 'superEffective'];
