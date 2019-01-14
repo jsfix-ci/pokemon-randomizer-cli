@@ -1,3 +1,5 @@
 #!/usr/bin/env node
 
-require('../lib/run.js');
+const run = require('../lib/run.js');
+
+run.execute();
