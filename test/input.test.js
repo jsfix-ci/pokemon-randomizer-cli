@@ -169,6 +169,55 @@ describe('input', async function () {
             });
         });
 
+        describe('randomType', async function () {
+            const randomTypeOption = allOptions.ALL_OPTIONS.find(o => o.long === 'random-type');
+            const getErrorText = (value) => 'Random Type option must be a boolean. Received: ' + value;
+
+            it('should accept true', async function () {
+                const randomType = true;
+                const options = await input.getOptions({ randomType });
+                expect(options.randomType).to.eq(randomType);
+            });
+    
+            it('should accept false', async function () {
+                const randomType = false;
+                const options = await input.getOptions({ randomType });
+                expect(options.randomType).to.eq(randomType);
+            });
+
+            it('should use default for null', async function () {
+                const randomType = null;
+                const options = await input.getOptions({ randomType });
+                expect(options.randomType).to.eq(randomTypeOption.default);
+            });
+
+            it('should use default for undefined', async function () {
+                const randomType = undefined;
+                const options = await input.getOptions({ randomType });
+                expect(options.randomType).to.eq(randomTypeOption.default);
+            });
+
+            it('should throw error if given a number', async function () {
+                const randomType = chance.integer();
+                try {
+                    await input.getOptions({ randomType });
+                    throw new Error(`Didn't throw!`);
+                } catch (err) {
+                    expect(err.message).to.be.eq(getErrorText(randomType));
+                }
+            });
+
+            it('should throw error if given a string', async function () {
+                const randomType = chance.string();
+                try {
+                    await input.getOptions({ randomType });
+                    throw new Error(`Didn't throw!`);
+                } catch (err) {
+                    expect(err.message).to.be.eq(getErrorText(randomType));
+                }
+            });
+        });
+
         describe('unique', async function () {
             const uniqueOption = allOptions.ALL_OPTIONS.find(o => o.long === 'unique');
             const getErrorText = (value) => 'Unique option must be a boolean. Received: ' + value;
