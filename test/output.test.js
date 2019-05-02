@@ -6,7 +6,6 @@ const chance = new Chance();
 const sinon = require('sinon');
 const chai = require('chai');
 const sinonChai = require('sinon-chai');
-const proxyquire = require('proxyquire');
 const output = require('../lib/output');
 const _ = require('lodash');
 
@@ -44,9 +43,37 @@ describe('output', async function () {
             });
         });
 
-        it('should list options used', async function () {
+        it('should output number of pokemon', async function () {
             await output.logPokemon(options, pokemon);
-            const expected = `Chose ${options.number} Pokemon`;
+            const expected = `Picked ${options.number} Pokemon`;
+            expect(stub).to.have.been.calledWithExactly(expected);
+        });
+
+        it('should output unique', async function () {
+            options.unique = true;
+            await output.logPokemon(options, pokemon);
+            const expected = `Picked ${options.number}, unique Pokemon`;
+            expect(stub).to.have.been.calledWithExactly(expected);
+        });
+
+        it('should output evolved', async function () {
+            options.evolved = true;
+            await output.logPokemon(options, pokemon);
+            const expected = `Picked ${options.number}, evolved Pokemon`;
+            expect(stub).to.have.been.calledWithExactly(expected);
+        });
+
+        it('should output type', async function () {
+            options.type = chance.string();
+            await output.logPokemon(options, pokemon);
+            const expected = `Picked ${options.number}, ${options.type} Pokemon`;
+            expect(stub).to.have.been.calledWithExactly(expected);
+        });
+
+        it('should output super effective against type', async function () {
+            options.superEffective = chance.string();
+            await output.logPokemon(options, pokemon);
+            const expected = `Picked ${options.number}, super effective against ${options.superEffective} Pokemon`;
             expect(stub).to.have.been.calledWithExactly(expected);
         });
     });
