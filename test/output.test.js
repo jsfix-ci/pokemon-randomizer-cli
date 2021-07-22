@@ -24,7 +24,7 @@ describe('output', function () {
             number: chance.integer({ min: 1, max: 10 }),
         };
         pokemon = [];
-        _.times(options.number, (n) => {
+        _.times(options.number, () => {
             pokemon.push({
                 name: chance.string(),
             });

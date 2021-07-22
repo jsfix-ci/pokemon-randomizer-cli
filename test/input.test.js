@@ -10,7 +10,7 @@ const chance = new Chance();
 describe('input', function () {
     describe('getOptions', function () {
         describe('number', function () {
-            const numberOption = allOptions.ALL_OPTIONS.find((o) => o.long === 'number');
+            const getNumberOption = () => allOptions.ALL_OPTIONS.find((o) => o.long === 'number');
             const getErrorText = (value) => `Number option must be a positive integer. Received: ${value}`;
 
             it('should accept a positive integer', async function () {
@@ -22,13 +22,13 @@ describe('input', function () {
             it('should choose default if given undefined', async function () {
                 const number = undefined;
                 const options = await input.getOptions({ number });
-                expect(options.number).to.eq(numberOption.default);
+                expect(options.number).to.eq(getNumberOption().default);
             });
 
             it('should choose default if given null', async function () {
                 const number = null;
                 const options = await input.getOptions({ number });
-                expect(options.number).to.eq(numberOption.default);
+                expect(options.number).to.eq(getNumberOption().default);
             });
 
             it('should throw error if given false', async function () {
@@ -73,7 +73,7 @@ describe('input', function () {
         });
 
         describe('evolved', function () {
-            const evolvedOption = allOptions.ALL_OPTIONS.find((o) => o.long === 'evolved');
+            const getEvolvedOption = () => allOptions.ALL_OPTIONS.find((o) => o.long === 'evolved');
             const getErrorText = (value) => `Evolved option must be a boolean. Received: ${value}`;
 
             it('should accept true', async function () {
@@ -91,13 +91,13 @@ describe('input', function () {
             it('should use default for null', async function () {
                 const evolved = null;
                 const options = await input.getOptions({ evolved });
-                expect(options.evolved).to.eq(evolvedOption.default);
+                expect(options.evolved).to.eq(getEvolvedOption().default);
             });
 
             it('should use default for undefined', async function () {
                 const evolved = undefined;
                 const options = await input.getOptions({ evolved });
-                expect(options.evolved).to.eq(evolvedOption.default);
+                expect(options.evolved).to.eq(getEvolvedOption().default);
             });
 
             it('should throw error if given a number', async function () {
@@ -122,7 +122,7 @@ describe('input', function () {
         });
 
         describe('type', function () {
-            const typeOption = allOptions.ALL_OPTIONS.find((o) => o.long === 'type');
+            const getTypeOption = () => allOptions.ALL_OPTIONS.find((o) => o.long === 'type');
             const getErrorText = (value) => `Type option must be a string. Received: ${value}`;
 
             it('should accept valid types', async function () {
@@ -150,13 +150,13 @@ describe('input', function () {
             it('should use default for null', async function () {
                 const type = null;
                 const options = await input.getOptions({ type });
-                expect(options.type).to.eq(typeOption.default);
+                expect(options.type).to.eq(getTypeOption().default);
             });
 
             it('should use default for undefined', async function () {
                 const type = undefined;
                 const options = await input.getOptions({ type });
-                expect(options.type).to.eq(typeOption.default);
+                expect(options.type).to.eq(getTypeOption().default);
             });
 
             it('should throw error if given a number', async function () {
@@ -171,7 +171,7 @@ describe('input', function () {
         });
 
         describe('randomType', function () {
-            const randomTypeOption = allOptions.ALL_OPTIONS.find((o) => o.long === 'random-type');
+            const getRandomTypeOption = () => allOptions.ALL_OPTIONS.find((o) => o.long === 'random-type');
             const getErrorText = (value) => `Random Type option must be a boolean. Received: ${value}`;
 
             it('should accept true', async function () {
@@ -189,13 +189,13 @@ describe('input', function () {
             it('should use default for null', async function () {
                 const randomType = null;
                 const options = await input.getOptions({ randomType });
-                expect(options.randomType).to.eq(randomTypeOption.default);
+                expect(options.randomType).to.eq(getRandomTypeOption().default);
             });
 
             it('should use default for undefined', async function () {
                 const randomType = undefined;
                 const options = await input.getOptions({ randomType });
-                expect(options.randomType).to.eq(randomTypeOption.default);
+                expect(options.randomType).to.eq(getRandomTypeOption().default);
             });
 
             it('should throw error if given a number', async function () {
@@ -220,7 +220,7 @@ describe('input', function () {
         });
 
         describe('unique', function () {
-            const uniqueOption = allOptions.ALL_OPTIONS.find((o) => o.long === 'unique');
+            const getUniqueOption = () => allOptions.ALL_OPTIONS.find((o) => o.long === 'unique');
             const getErrorText = (value) => `Unique option must be a boolean. Received: ${value}`;
 
             it('should accept true', async function () {
@@ -238,13 +238,13 @@ describe('input', function () {
             it('should use default for null', async function () {
                 const unique = null;
                 const options = await input.getOptions({ unique });
-                expect(options.unique).to.eq(uniqueOption.default);
+                expect(options.unique).to.eq(getUniqueOption().default);
             });
 
             it('should use default for undefined', async function () {
                 const unique = undefined;
                 const options = await input.getOptions({ unique });
-                expect(options.unique).to.eq(uniqueOption.default);
+                expect(options.unique).to.eq(getUniqueOption().default);
             });
 
             it('should throw error if given a number', async function () {

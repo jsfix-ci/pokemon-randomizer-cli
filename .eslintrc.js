@@ -22,7 +22,6 @@ module.exports = {
     rules: {
         'max-len': ['error', 150],
         indent: ['error', 4],
-        indent: ['error', 4],
         'linebreak-style': 0,
         'func-names': 0,
         'arrow-body-style': 0,
