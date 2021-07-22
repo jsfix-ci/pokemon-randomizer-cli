@@ -1,17 +1,23 @@
 Pokemon Randomizer CLI
 ==================
 
-This is a simple command line interface to generate random lists of pokemon
+This is a simple command line interface to generate random lists of pokemon.
+
+Type `poke-rand --help` to see available options
 
 
 Options:
 
 ```
-n [number]: number of random pokemon to generate
-e [evolved]: choose only fully evolved pokemon
-t [type]: choose only pokemon of this type
-s [superEffective]: choose only pokemon super effective against this type
-f [file]: load options from this file
+-V, --version                          output the version number
+-n --number <n>                        Number of Pokemon
+-e --evolved                           Only fully evolved Pokemon
+-t --type [type]                       Only Pokemon of this type
+-r --random-type                       Only Pokemon of a random type
+-u --unique                            Only unique Pokemon
+-f --file [file]                       Load options from a json file
+-s --super-effective [super-effective] Only Pokemon super effective against this type
+-h, --help                             display help for command
 ```
 
 Examples:
@@ -51,7 +57,7 @@ Picked 2 Pokemon
 Ponyta
 Ninetales
 
-# You can pick only evolved pokemon
+# You can pick only fully evolved pokemon
 $ poke-rand -n 2 -t fire -e
 Picked 2 Pokemon
 Rapidash
