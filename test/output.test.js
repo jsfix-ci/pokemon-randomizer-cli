@@ -1,18 +1,19 @@
 'ust strict';
 
-const expect = require('chai').expect;
+const { expect } = require('chai');
 const Chance = require('chance');
+
 const chance = new Chance();
 const sinon = require('sinon');
 const chai = require('chai');
 const sinonChai = require('sinon-chai');
-const output = require('../lib/output');
 const _ = require('lodash');
+const output = require('../lib/output');
 
 chai.should();
 chai.use(sinonChai);
 
-describe('output', async function () {
+describe('output', function () {
     let stub;
     let options;
     let pokemon;
@@ -25,7 +26,7 @@ describe('output', async function () {
         pokemon = [];
         _.times(options.number, (n) => {
             pokemon.push({
-                name: chance.string()
+                name: chance.string(),
             });
         });
     });
@@ -34,7 +35,7 @@ describe('output', async function () {
         stub.restore();
     });
 
-    describe('logPokemon', async function () {
+    describe('logPokemon', function () {
         it('should call console.log per pokemon', async function () {
             await output.logPokemon(options, pokemon);
             expect(stub).to.have.callCount(options.number + 1);

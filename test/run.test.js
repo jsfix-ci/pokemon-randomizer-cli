@@ -1,7 +1,8 @@
 'ust strict';
 
-const expect = require('chai').expect;
+const { expect } = require('chai');
 const Chance = require('chance');
+
 const chance = new Chance();
 const sinon = require('sinon');
 const chai = require('chai');
@@ -11,7 +12,7 @@ const proxyquire = require('proxyquire');
 chai.should();
 chai.use(sinonChai);
 
-describe('run', async function () {
+describe('run', function () {
     let run;
     let stubs;
     let options;

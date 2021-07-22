@@ -22,14 +22,14 @@ module.exports = {
     rules: {
         'max-len': ['error', 150],
         indent: ['error', 4],
-        'indent': ['error', 4],
+        indent: ['error', 4],
         'linebreak-style': 0,
         'func-names': 0,
         'arrow-body-style': 0,
         'no-unused-expressions': 0,
         'chai-friendly/no-unused-expressions': 2,
-        "prefer-arrow-callback": 0,
-        "mocha/prefer-arrow-callback": 2,
+        'prefer-arrow-callback': 0,
+        'mocha/prefer-arrow-callback': 2,
         'no-use-before-define': ['error', { variables: true, functions: false }],
     },
 };

@@ -1,23 +1,24 @@
 'ust strict';
 
-const input = require('../lib/input');
-const expect = require('chai').expect;
-const allOptions = require('../lib/options');
+const { expect } = require('chai');
 const Chance = require('chance');
+const input = require('../lib/input');
+const allOptions = require('../lib/options');
+
 const chance = new Chance();
 
-describe('input', async function () {
-    describe('getOptions', async function () {
-        describe('number', async function () {
-            const numberOption = allOptions.ALL_OPTIONS.find(o => o.long === 'number');
-            const getErrorText = (value) => 'Number option must be a positive integer. Received: ' + value;
+describe('input', function () {
+    describe('getOptions', function () {
+        describe('number', function () {
+            const numberOption = allOptions.ALL_OPTIONS.find((o) => o.long === 'number');
+            const getErrorText = (value) => `Number option must be a positive integer. Received: ${value}`;
 
             it('should accept a positive integer', async function () {
                 const number = chance.natural();
                 const options = await input.getOptions({ number });
                 expect(options.number).to.eq(number);
             });
-    
+
             it('should choose default if given undefined', async function () {
                 const number = undefined;
                 const options = await input.getOptions({ number });
@@ -34,7 +35,7 @@ describe('input', async function () {
                 const number = false;
                 try {
                     await input.getOptions({ number });
-                    throw new Error(`Didn't throw!`);
+                    throw new Error('Didn\'t throw!');
                 } catch (err) {
                     expect(err.message).to.be.eq(getErrorText(number));
                 }
@@ -44,7 +45,7 @@ describe('input', async function () {
                 const number = ({ min: Number.MIN_SAFE_INTEGER, max: -1 });
                 try {
                     await input.getOptions({ number });
-                    throw new Error(`Didn't throw!`);
+                    throw new Error('Didn\'t throw!');
                 } catch (err) {
                     expect(err.message).to.be.eq(getErrorText(number));
                 }
@@ -54,7 +55,7 @@ describe('input', async function () {
                 const number = chance.string();
                 try {
                     await input.getOptions({ number });
-                    throw new Error(`Didn't throw!`);
+                    throw new Error('Didn\'t throw!');
                 } catch (err) {
                     expect(err.message).to.be.eq(getErrorText(number));
                 }
@@ -64,23 +65,23 @@ describe('input', async function () {
                 const number = chance.floating();
                 try {
                     await input.getOptions({ number });
-                    throw new Error(`Didn't throw!`);
+                    throw new Error('Didn\'t throw!');
                 } catch (err) {
                     expect(err.message).to.be.eq(getErrorText(number));
                 }
             });
         });
 
-        describe('evolved', async function () {
-            const evolvedOption = allOptions.ALL_OPTIONS.find(o => o.long === 'evolved');
-            const getErrorText = (value) => 'Evolved option must be a boolean. Received: ' + value;
+        describe('evolved', function () {
+            const evolvedOption = allOptions.ALL_OPTIONS.find((o) => o.long === 'evolved');
+            const getErrorText = (value) => `Evolved option must be a boolean. Received: ${value}`;
 
             it('should accept true', async function () {
                 const evolved = true;
                 const options = await input.getOptions({ evolved });
                 expect(options.evolved).to.eq(evolved);
             });
-    
+
             it('should accept false', async function () {
                 const evolved = false;
                 const options = await input.getOptions({ evolved });
@@ -103,7 +104,7 @@ describe('input', async function () {
                 const evolved = chance.integer();
                 try {
                     await input.getOptions({ evolved });
-                    throw new Error(`Didn't throw!`);
+                    throw new Error('Didn\'t throw!');
                 } catch (err) {
                     expect(err.message).to.be.eq(getErrorText(evolved));
                 }
@@ -113,22 +114,22 @@ describe('input', async function () {
                 const evolved = chance.string();
                 try {
                     await input.getOptions({ evolved });
-                    throw new Error(`Didn't throw!`);
+                    throw new Error('Didn\'t throw!');
                 } catch (err) {
                     expect(err.message).to.be.eq(getErrorText(evolved));
                 }
             });
         });
 
-        describe('type', async function () {
-            const typeOption = allOptions.ALL_OPTIONS.find(o => o.long === 'type');
-            const getErrorText = (value) => 'Type option must be a string. Received: ' + value;
+        describe('type', function () {
+            const typeOption = allOptions.ALL_OPTIONS.find((o) => o.long === 'type');
+            const getErrorText = (value) => `Type option must be a string. Received: ${value}`;
 
             it('should accept valid types', async function () {
                 const types = ['normal', 'fire', 'fighting', 'water', 'flying', 'grass',
                     'poison', 'electric', 'ground', 'psychic', 'rock', 'ice', 'bug',
                     'dragon', 'ghost', 'dark', 'steel', 'fairy'];
-                return types.forEach(async type => {
+                return types.forEach(async (type) => {
                     const options = await input.getOptions({ type });
                     expect(options.type).to.eq(type);
                 });
@@ -162,23 +163,23 @@ describe('input', async function () {
                 const type = chance.integer();
                 try {
                     await input.getOptions({ type });
-                    throw new Error(`Didn't throw!`);
+                    throw new Error('Didn\'t throw!');
                 } catch (err) {
                     expect(err.message).to.be.eq(getErrorText(type));
                 }
             });
         });
 
-        describe('randomType', async function () {
-            const randomTypeOption = allOptions.ALL_OPTIONS.find(o => o.long === 'random-type');
-            const getErrorText = (value) => 'Random Type option must be a boolean. Received: ' + value;
+        describe('randomType', function () {
+            const randomTypeOption = allOptions.ALL_OPTIONS.find((o) => o.long === 'random-type');
+            const getErrorText = (value) => `Random Type option must be a boolean. Received: ${value}`;
 
             it('should accept true', async function () {
                 const randomType = true;
                 const options = await input.getOptions({ randomType });
                 expect(options.randomType).to.eq(randomType);
             });
-    
+
             it('should accept false', async function () {
                 const randomType = false;
                 const options = await input.getOptions({ randomType });
@@ -201,7 +202,7 @@ describe('input', async function () {
                 const randomType = chance.integer();
                 try {
                     await input.getOptions({ randomType });
-                    throw new Error(`Didn't throw!`);
+                    throw new Error('Didn\'t throw!');
                 } catch (err) {
                     expect(err.message).to.be.eq(getErrorText(randomType));
                 }
@@ -211,23 +212,23 @@ describe('input', async function () {
                 const randomType = chance.string();
                 try {
                     await input.getOptions({ randomType });
-                    throw new Error(`Didn't throw!`);
+                    throw new Error('Didn\'t throw!');
                 } catch (err) {
                     expect(err.message).to.be.eq(getErrorText(randomType));
                 }
             });
         });
 
-        describe('unique', async function () {
-            const uniqueOption = allOptions.ALL_OPTIONS.find(o => o.long === 'unique');
-            const getErrorText = (value) => 'Unique option must be a boolean. Received: ' + value;
+        describe('unique', function () {
+            const uniqueOption = allOptions.ALL_OPTIONS.find((o) => o.long === 'unique');
+            const getErrorText = (value) => `Unique option must be a boolean. Received: ${value}`;
 
             it('should accept true', async function () {
                 const unique = true;
                 const options = await input.getOptions({ unique });
                 expect(options.unique).to.eq(unique);
             });
-    
+
             it('should accept false', async function () {
                 const unique = false;
                 const options = await input.getOptions({ unique });
@@ -250,7 +251,7 @@ describe('input', async function () {
                 const unique = chance.integer();
                 try {
                     await input.getOptions({ unique });
-                    throw new Error(`Didn't throw!`);
+                    throw new Error('Didn\'t throw!');
                 } catch (err) {
                     expect(err.message).to.be.eq(getErrorText(unique));
                 }
@@ -260,7 +261,7 @@ describe('input', async function () {
                 const unique = chance.string();
                 try {
                     await input.getOptions({ unique });
-                    throw new Error(`Didn't throw!`);
+                    throw new Error('Didn\'t throw!');
                 } catch (err) {
                     expect(err.message).to.be.eq(getErrorText(unique));
                 }
