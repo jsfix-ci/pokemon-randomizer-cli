@@ -1,6 +1,6 @@
 {
   "name": "pokemon-randomizer-cli",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "CLI to pick random teams of pokemon",
   "main": "./bin/index.js",
   "bin": {
