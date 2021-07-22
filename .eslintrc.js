@@ -30,5 +30,6 @@ module.exports = {
         'prefer-arrow-callback': 0,
         'mocha/prefer-arrow-callback': 2,
         'no-use-before-define': ['error', { variables: true, functions: false }],
+        'import/prefer-default-export': 0,
     },
 };
